@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O3 -g -I./include -luv -lz -lhttp_parser -pipe -flto -march=native \
+CFLAGS=-O3 -g -I./include -luv -lz -lhttp_parser -pipe -flto -march=x86-64-v3 \
           -fno-plt -fdata-sections -ffunction-sections \
           -DNDEBUG -DHTTP_SERVER_FAST \
           -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion
