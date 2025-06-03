@@ -35,6 +35,7 @@ tests/aof_multi_fork: tests/aof_multi_fork.c src/crc32c.c src/aof_batch.c src/st
 
 .PHONY: test
 test: $(TESTS)
+        chmod +x $(TESTS)
 	@for t in $(TESTS); do $$t || exit 1; done
 	@echo "All CRC smoke-tests passed."
 
