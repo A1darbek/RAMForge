@@ -1,0 +1,42 @@
+# Ignore build artifacts
+*.o
+*.a
+*.so
+*.exe
+ramforge
+cmake-build-*/
+build/
+dist/
+
+# Ignore test/output data
+*.aof
+*.rdb
+*.log
+
+# Ignore CLion/JetBrains/IDEA files
+.idea/
+*.iml
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+Testing/
+install_manifest.txt
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache if you ever use scripts
+__pycache__/
+*.pyc
+
+# Node, Rust, etc. (remove if not used)
+node_modules/
+target/
+
+# (Optional) Ignore everything in /tests/ except source files
+# /tests/*.log
