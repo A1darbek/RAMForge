@@ -521,7 +521,13 @@ void http_server_init(App* app, int port) {
     struct sockaddr_in addr;
     uv_ip4_addr("0.0.0.0", port, &addr);
 
-    int bind_result = uv_tcp_bind(server, (const struct sockaddr*)&addr, UV_TCP_REUSEPORT);
+    // Portable REUSEPORT binding
+    int bind_result;
+    #ifdef UV_TCP_REUSEPORT
+        bind_result = uv_tcp_bind(server, (const struct sockaddr*)&addr, UV_TCP_REUSEPORT);
+    #else
+        bind_result = uv_tcp_bind(server, (const struct sockaddr*)&addr, 0);
+    #endif
     if (bind_result != 0) {
         fprintf(stderr, "Bind failed: %s\n", uv_strerror(bind_result));
         exit(1);
