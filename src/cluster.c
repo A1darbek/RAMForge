@@ -121,7 +121,12 @@ static void wait_for_workers(void)
 int start_cluster_with_args(int port,int argc,char **argv)
 {
     worker_count = detect_worker_target(argc, argv);
-    if (worker_count < 1) worker_count = 1;
+    /* NEW — if caller requests 0 workers, run a single worker in-process */
+    if (worker_count == 0) {
+        printf("🚀 Single-process mode (no cluster manager)\n");
+        run_worker(0, port);          /* run_worker never returns */
+        return 0;                     /* not reached, but keeps compiler happy */
+    }
     worker_pids = calloc(worker_count,sizeof *worker_pids);
 
     printf("🚀 Starting RamForge cluster with %d worker%s on port %d\n",
