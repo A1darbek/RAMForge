@@ -31,7 +31,8 @@ jobs:
 
       - name: ⚙️  Build RamForge
         run: make          # expects default target to produce ./ramforge
-
+      - name: Fix test binary permissions
+        run: chmod +x tests/*
       - name: ✅ Unit tests (CRC + multi-fork)
         run: make test
 
