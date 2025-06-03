@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="RAMForge"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RAMForge">
+				<Option output="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug/RAMForge" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/14/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/aarch64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 RAMForge"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RAMForge/fast">
+				<Option output="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug/RAMForge" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/aarch64-linux-gnu/14/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/aarch64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 RAMForge/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/mnt/c/Users/amano/Desktop/Romanuly\ Aidarbek/RAMForge/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/aof_batch.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/aof_batch.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/app.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/app.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/app_routes.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/app_routes.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/cluster.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/cluster.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/crc32c.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/crc32c.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/fast_json.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/globals.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/http_server.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/http_server.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/main.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/object_pool.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/object_pool.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/persistence.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/persistence.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/ramforge.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/ramforge.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/request.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/request.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/response.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/response.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/router.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/router.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/slab_alloc.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/slab_alloc.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/storage.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/storage.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/src/user.h">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/tests/aof_multi_fork.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/tests/aof_roundtrip.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/tests/crc32c_test.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/tests/rdb_corrupt.c">
+			<Option target="RAMForge"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/amano/Desktop/Romanuly Aidarbek/RAMForge/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
