@@ -1,3 +1,0 @@
-ToolSet: Kali GNU/Linux Rolling (local)Options: 
-
-Options:
