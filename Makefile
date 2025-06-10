@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O3 -g -I./include -luv -lz -lhttp_parser -pipe -flto -march=native \
+CFLAGS=-O3 -g -I./include -luv -lz -lhttp_parser -pipe -flto -march=x86-64-v3 \
           -fno-plt -fdata-sections -ffunction-sections \
           -DNDEBUG -DHTTP_SERVER_FAST \
           -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion
@@ -16,7 +16,7 @@ debug: $(EXEC)
 
 clean:
 	rm -f $(OBJ) $(EXEC)
-TESTS := tests/crc32c_test tests/aof_roundtrip tests/rdb_corrupt tests/aof_multi_fork
+TESTS := tests/crc32c_test tests/aof_roundtrip tests/rdb_corrupt tests/aof_multi_fork tests/aof_live_rewrite tests/chaos_latency_test
 
 # Test: crc32c_test (needs only its .c and src/crc32c.c)
 tests/crc32c_test: tests/crc32c_test.c src/crc32c.c
@@ -31,6 +31,16 @@ tests/rdb_corrupt: tests/rdb_corrupt.c src/crc32c.c
 
 tests/aof_multi_fork: tests/aof_multi_fork.c src/crc32c.c src/aof_batch.c src/storage.c
 	$(CC) -pthread -Isrc -o $@ $^
+
+tests/aof_live_rewrite: tests/aof_live_rewrite.c \
+                        src/aof_batch.c src/storage.c src/crc32c.c
+	$(CC) -pthread -Isrc -o $@ $^
+
+tests/chaos_latency_test: tests/chaos_latency_test.c \
+                         src/zero_pause_rdb.c src/storage.c src/crc32c.c src/slab_alloc.c
+	$(CC) -pthread -Isrc -o $@ $^ -luv
+
+
 
 
 .PHONY: test
