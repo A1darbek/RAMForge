@@ -7,6 +7,7 @@
 #include "aof_batch.h"
 #include "fast_json.h"
 #include "router.h"
+#include "ramforge_rotation_metrics.h"
 
 extern App *g_app;
 
@@ -62,7 +63,7 @@ int create_user_fast(Request *req, Response *res) {
     }
 
     // Create user struct
-    User u;
+    User u = {0}; // or memset(&u, 0, sizeof(u));
     u.id = id_field->as.i;
 
     // Copy name (safe bounds checking)
@@ -189,63 +190,21 @@ int compact_handler_fast(Request *req, Response *res) {
     memcpy(res->buffer, compact_response, compact_len);
     res->buffer[compact_len] = '\0';
 }
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// Batch Operations for Maximum Throughput
-// ═══════════════════════════════════════════════════════════════════════════════
-
-// POST /users/batch → create multiple users in one request
-//int create_users_batch(Request *req, Response *res) {
-//    json_value_t* root = json_parse(req->body, strlen(req->body));
-//    if (!root || root->type != JSON_ARRAY) {
-//        const char* error = "{\"error\":\"Expected array of users\"}";
-//        size_t error_len = strlen(error);
-//        memcpy(res->buffer, error, error_len);
-//        res->buffer[error_len] = '\0';
-//        if (root) json_free(root);
-//        return;
-//    }
-//
-//    size_t created = 0;
-//    size_t errors = 0;
-//
-//    // Process batch
-//    for (size_t i = 0; i < root->as.array.count; i++) {
-//        json_value_t* user_obj = &root->as.array.items[i];
-//        if (user_obj->type != JSON_OBJECT) {
-//            errors++;
-//            continue;
-//        }
-//
-//        json_value_t* id_field = json_get_field(user_obj, "id");
-//        json_value_t* name_field = json_get_field(user_obj, "name");
-//
-//        if (!id_field || !name_field ||
-//            id_field->type != JSON_INT ||
-//            name_field->type != JSON_STRING) {
-//            errors++;
-//            continue;
-//        }
-//
-//        User u;
-//        u.id = id_field->as.i;
-//        size_t name_len = name_field->as.s.len;
-//        if (name_len >= sizeof(u.name)) name_len = sizeof(u.name) - 1;
-//        memcpy(u.name, name_field->as.s.ptr, name_len);
-//        u.name[name_len] = '\0';
-//
-//        storage_save(g_app->storage, u.id, &u, sizeof(u));
-//        AOF_append(u.id, &u, sizeof(u));
-//        created++;
-//    }
-//
-//    // Fast response generation
-//    char* p = res->buffer;
-//    p += sprintf(p, "{\"created\":%zu,\"errors\":%zu}", created, errors);
-//    *p = '\0';
-//
-//    json_free(root);
+//int prometheus_metrics_handler(Request* req, Response* res) {
+//    (void)req;
+//    RAMForge_export_prometheus_metrics_buffer(res->buffer, RESPONSE_BUFFER_SIZE);
+//    return 0;
 //}
+
+int prometheus_metrics_handler(Request* req, Response* res) {
+    (void)req;
+    strcpy(res->buffer, "OK\n");
+    return 0;
+}
+
+
+
+
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Framework Integration & Route Registration
@@ -267,6 +226,8 @@ void register_application_routes(App *app) {
     // System routes
     app->get(app, "/health", health_fast);
     app->post(app, "/admin/compact", compact_handler_fast);
+    app->get(app, "/metrics", prometheus_metrics_handler);
+
 }
 
 // Legacy alias for backward compatibility
