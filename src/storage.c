@@ -14,8 +14,6 @@ static inline uint32_t mix32(uint32_t x) {
     return x;
 }
 
-
-
 /// Initialize with a small power-of-two capacity.
 void storage_init(Storage *st) {
     st->capacity = 16;
@@ -28,15 +26,29 @@ void storage_init(Storage *st) {
 
 /// Free all data blocks and arrays.
 void storage_destroy(Storage *st) {
+    if (st == NULL) return;
+
+    // Free all occupied buckets
     for (size_t i = 0; i < st->capacity; i++) {
-        if (st->flags[i] == BUCKET_OCCUPIED) {
+        if (st->flags[i] == BUCKET_OCCUPIED && st->values[i] != NULL) {
             free(st->values[i]);
+            st->values[i] = NULL;  // Prevent double-free
         }
     }
+
+    // Free the arrays
     free(st->flags);
     free(st->keys);
     free(st->values);
     free(st->val_sizes);
+
+    // Reset the structure to prevent accidental reuse
+    st->flags = NULL;
+    st->keys = NULL;
+    st->values = NULL;
+    st->val_sizes = NULL;
+    st->capacity = 0;
+    st->size = 0;
 }
 
 /// Rehash into a new table twice as large
@@ -69,6 +81,8 @@ static void storage_rehash(Storage *st) {
 
 /// Insert or update via Robin-Hood hashing
 void storage_save(Storage *st, int id, const void *data, size_t size) {
+    if (st == NULL || data == NULL) return;
+
     // Grow if load factor > 0.7
     if ((double)(st->size + 1) / st->capacity > 0.7) {
         storage_rehash(st);
@@ -87,6 +101,7 @@ void storage_save(Storage *st, int id, const void *data, size_t size) {
     // Prepare new entry
     int    new_key = id;
     void  *new_val = malloc(size);
+    if (new_val == NULL) return;  // Handle malloc failure
     memcpy(new_val, data, size);
     size_t new_sz  = size;
     uint8_t new_flag = BUCKET_OCCUPIED;
@@ -100,6 +115,15 @@ void storage_save(Storage *st, int id, const void *data, size_t size) {
             st->values[idx]    = new_val;
             st->val_sizes[idx] = new_sz;
             st->size++;
+            return;
+        }
+
+        // Check if this is the same key (update case)
+        if (st->keys[idx] == new_key) {
+            // FIXED: Free the old value before overwriting
+            free(st->values[idx]);
+            st->values[idx]    = new_val;
+            st->val_sizes[idx] = new_sz;
             return;
         }
 
@@ -121,12 +145,6 @@ void storage_save(Storage *st, int id, const void *data, size_t size) {
             new_val   = cur_val;
             new_sz    = cur_sz;
             dist      = cur_dist;
-        } else if (st->keys[idx] == new_key) {
-            // Overwrite existing key
-            free(st->values[idx]);
-            st->values[idx]    = new_val;
-            st->val_sizes[idx] = new_sz;
-            return;
         }
 
         // Next slot
@@ -137,6 +155,8 @@ void storage_save(Storage *st, int id, const void *data, size_t size) {
 
 /// Retrieve the data for `id` if present.
 int storage_get(Storage *st, int id, void *out, size_t out_sz) {
+    if (st == NULL || out == NULL) return 0;
+
     uint32_t hash = mix32((uint32_t)id);
     size_t  mask = st->capacity - 1;
     size_t  idx  = hash & mask;
@@ -157,6 +177,8 @@ int storage_get(Storage *st, int id, void *out, size_t out_sz) {
 
 /// Remove entry and mark deleted.
 void storage_remove(Storage *st, int id) {
+    if (st == NULL) return;
+
     uint32_t hash = mix32((uint32_t)id);
     size_t  mask = st->capacity - 1;
     size_t  idx  = hash & mask;
@@ -167,6 +189,7 @@ void storage_remove(Storage *st, int id) {
         }
         if (st->flags[idx] == BUCKET_OCCUPIED && st->keys[idx] == id) {
             free(st->values[idx]);
+            st->values[idx] = NULL;  // Prevent dangling pointer
             st->flags[idx] = BUCKET_DELETED;
             st->size--;
             return;
@@ -176,6 +199,8 @@ void storage_remove(Storage *st, int id) {
 }
 
 void storage_iterate(Storage *st, void (*fn)(int, const void *, size_t, void *), void *udata) {
+    if (st == NULL || fn == NULL) return;
+
     // Access the flags/keys/values arrays directly (they're already in storage.c)
     for (size_t i = 0; i < st->capacity; i++) {
         if (st->flags[i] == BUCKET_OCCUPIED) {
