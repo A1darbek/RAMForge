@@ -8,6 +8,7 @@
 // ────────────────────────────────────────────────────────────────
 // global configuration visible inside workers
 unsigned g_aof_flush_ms = 10;           // 0  → appendfsync always
+int g_aof_mode = 2;                     // 0=never, 1=always, 2=fsync (default)
 // ────────────────────────────────────────────────────────────────
 
 // graceful shutdown flag (parent only)
@@ -36,9 +37,13 @@ static void parse_arguments(int argc, char **argv)
         if (strcmp(argv[i], "--aof") == 0 && i + 1 < argc) {
             if (strcmp(argv[i + 1], "always") == 0) {
                 g_aof_flush_ms = 0;
+                g_aof_mode = 1;         // always mode
                 printf("📝 AOF flush mode: ALWAYS (sync-every-write)\n");
+            } else if (strcmp(argv[i + 1], "never") == 0) {
+                g_aof_mode = 0;         // disabled
+                printf("📝 AOF flush mode: NEVER (disabled)\n");
             } else {
-                printf("📝 Unknown --aof option “%s”, using default 10 ms\n",
+                printf("📝 Unknown --aof option “%s”, using default fsync mode\n",
                        argv[i + 1]);
             }
             i++;                        // skip value
@@ -56,6 +61,9 @@ int main(int argc, char **argv)
     setup_signal_handlers();
 
     printf("🚀 RamForge parent – starting cluster only (heavy init in workers)\n");
+    printf("   AOF mode: %s\n",
+           g_aof_mode == 0 ? "never" :
+           g_aof_mode == 1 ? "always" : "fsync (default)");
     printf("   AOF flush interval: %s\n",
            g_aof_flush_ms == 0 ? "always" : "10 ms (default)");
     printf("   Port: 1109\n\n");
